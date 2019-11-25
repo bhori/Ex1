@@ -1,4 +1,4 @@
-package myMath;
+package myMath.matala1;
 
 /**
  * The interface represents a continuance function 

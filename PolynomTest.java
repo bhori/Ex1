@@ -1,4 +1,4 @@
-package myMath;
+package myMath.matala1;
 
 public class PolynomTest {
 	public static void main(String[] args) {

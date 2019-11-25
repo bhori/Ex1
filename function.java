@@ -1,4 +1,4 @@
-package myMath;
+package myMath.matala1;
 /** This interface represents a simple function of type y=f(x), where both y and x are real numbers.
 **/
 public interface function {

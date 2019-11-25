@@ -1,4 +1,4 @@
-package myMath;
+package myMath.matala1;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 import javax.management.RuntimeErrorException;
 
-import myMath.Monom;
+import myMath.matala1.Monom;
 
 /**
  * This class represents a Polynom with add, multiply functionality, it also should support the following:

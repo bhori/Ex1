@@ -70,7 +70,9 @@ public class Polynom implements Polynom_able{
 		
 	}
 	
-	@Override
+	/**
+	 * this method returns the value of the Polynom at point x  
+	 */
 	public double f(double x) {
 		double sum=0;
 		for(Monom m:polynom)
@@ -80,7 +82,10 @@ public class Polynom implements Polynom_able{
 		return sum;
 	}
 
-	@Override
+	/**
+	 * Add p1 to this Polynom
+	 * @param p1
+	 */
 	public void add(Polynom_able p1) {
 		if(p1==null)
 			throw new RuntimeException("ERR: The polynom is empty");
@@ -91,7 +96,10 @@ public class Polynom implements Polynom_able{
 		
 	}
 
-	@Override
+	/**
+	 * Add m1 to this Polynom
+	 * @param m1 Monom
+	 */
 	public void add(Monom m1) {
 		if(m1==null)
 			throw new RuntimeException("ERR: The monom is empty");
@@ -119,7 +127,10 @@ public class Polynom implements Polynom_able{
 		
 	}
 
-	@Override
+	/**
+	 * Subtract p1 from this Polynom
+	 * @param p1
+	 */
 	public void substract(Polynom_able p1) {
 		if(p1==null)
 			throw new RuntimeException("ERR: The polynom is empty");
@@ -134,7 +145,10 @@ public class Polynom implements Polynom_able{
 		
 	}
 
-	@Override
+	/**
+	 * Multiply this Polynom by p1
+	 * @param p1
+	 */
 	public void multiply(Polynom_able p1) {
 		if(p1==null)
 			throw new RuntimeException("ERR: The polynom is empty");
@@ -149,7 +163,11 @@ public class Polynom implements Polynom_able{
 		this.add(temp1);
 	}
 
-	@Override
+	/**
+	 * Test if this Polynom is logically equals to p1.
+	 * @param p1
+	 * @return true iff this polynom represents the same function as p1
+	 */
 	public boolean equals(Polynom_able p1) {
 		if(p1==null)
 			throw new RuntimeException("ERR: The polynom is empty");
@@ -164,50 +182,69 @@ public class Polynom implements Polynom_able{
 		return true;
 	}
 
-	@Override
+	/**
+	 * Test if this is the Zero Polynom
+	 */
 	public boolean isZero() {
 		if(this.polynom.size()!=0)
 			return false;
 		return true;
 	}
 
-	@Override
+	/**
+	 * Compute a value x' (x0<=x'<=x1) for with |f(x')| < eps
+	 * assuming (f(x0)*f(x1)<=0, else should throws runtimeException 
+	 * computes f(x') such that:
+	 * 	(i) x0<=x'<=x1 && 
+	 * 	(ii) |f(x')|<eps
+	 * @param x0 starting point
+	 * @param x1 end point
+	 * @param eps>0 (positive) representing the epsilon range the solution should be within.
+	 * @return an approximated value (root) for this (cont.) function 
+	 */
 	public double root(double x0, double x1, double eps) {
-		if(!(this.f(x0)*this.f(x1)<=0)) {
+		// TODO Auto-generated method stub
+		if(x0>x1) {
+			throw new RuntimeException("ERR: the range is wrong, x0>x1!");
+		}
+		if (!(this.f(x0) * this.f(x1) <= 0)) {
 			throw new RuntimeException("ERR: in that points (f(x0)*f(x1))>0");
 		}
-		double pos, neg;
-		if(this.f(x0)>0) {
-			pos=x0;
-			neg=x1;
-		}else {
-			pos=x1;
-			neg=x0;
+		if(this.f(x0)==0) {
+			return x0;
 		}
-		double mid=(pos+neg)/2;//x'
-		while(Math.abs(this.f(mid))>=eps) {
-			if(this.f(mid)>0) {
-				pos=mid;
-				mid=(pos+neg)/2;
+		if(this.f(x1)==0) {
+			return x1;
+		}
+
+		double mid = (x0 + x1) / 2;// mid = x'
+		while (Math.abs(this.f(mid)) >= eps) {
+			if(this.f(mid)*this.f(x0)<0) {
+				x1=mid;
+				mid=(x0+x1)/2;
 			}else {
-				neg=mid;
-				mid=(pos+neg)/2;
+				x0=mid;
+				mid=(mid+x1)/2;
 			}
 		}
 		return mid;
 	}
 
-	@Override
+	/**
+	 * create a deep copy of this Polynom
+	 */
 	public Polynom_able copy() {
 		Polynom_able p= new Polynom();
 		for(Monom m:polynom)
 		{
-			p.add(new Monom(m));;
+			p.add(new Monom(m));
 		}
 		return p;
 	}
 
-	@Override
+	/**
+	 * Compute and returns a new Polynom which is the derivative of this Polynom
+	 */
 	public Polynom_able derivative() {
 		Polynom_able p= new Polynom();
 		for(Monom m:polynom)
@@ -217,14 +254,21 @@ public class Polynom implements Polynom_able{
 		return p;
 	}
 
-	@Override
+	/**
+	 * Compute a Riman's integral from x0 to x1 in eps steps. 
+	 * @param x0 starting pooint
+	 * @param x1 end point
+	 * @param eps positive step value
+	 * @return the approximated area above X-axis below this function bounded in the range of [x0,x1]
+	 */
 	public double area(double x0, double x1, double eps) {
+		// TODO Auto-generated method stub
 		double area = 0;
 		double tmp=0;
-		if(x0>x1) {
-			throw new RuntimeException("ERR: the range of the integral is wrong");
+		if((x0>=x1) || (Math.abs(x1-x0)<eps)){
+			return area; 
 		}
-		for (double i = x0 + eps; i <=x1; i = i + eps) { // i=x0 or i=x0+eps??
+		for (double i = x0 + eps; i <=x1; i = i + eps) { 
 			if (this.f(i) > 0) {
 				tmp=(this.f(i - eps)+this.f(i))*eps/2;
 				area+=tmp;
@@ -233,13 +277,18 @@ public class Polynom implements Polynom_able{
 		return area;
 	}
 
-	@Override
+	/**
+	 * @return an Iterator (of Monoms) over this Polynom
+	 */
 	public Iterator<Monom> iteretor() {
 		return this.polynom.iterator();
 		
 		
 	}
-	@Override
+	/**
+	 * Multiply this Polynom by Monom m1
+	 * @param m1
+	 */
 	public void multiply(Monom m1) {
 		if(m1.get_coefficient()==0) {
 			polynom.clear();
@@ -253,6 +302,9 @@ public class Polynom implements Polynom_able{
 		}
 		
 	}
+	/**
+	 * @return a String that represents the polynom 
+	 */
 	public String toString() {
 		String s="";
 		String sMon="";

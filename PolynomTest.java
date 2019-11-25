@@ -5,6 +5,7 @@ public class PolynomTest {
 		test1();
 		test2();
 		test3();
+		test4();
 	}
 
 	public static void test1() {
@@ -72,4 +73,47 @@ public class PolynomTest {
 		else System.out.println(false);
 		
 	}
+	
+	private static void test4() {
+		Polynom p1 = new Polynom("x^2-4");
+		System.out.println("***area test***");
+		System.out.println("p1="+p1);
+		System.out.println("p1: area in range -4,4: "+p1.area(-4, 4, 0.0001));
+		System.out.println("p1: area in range -4,-4: "+p1.area(-4, -4, 0.0001));
+		System.out.println("p1: area in range -2,2: "+p1.area(-2, 2, 0.0001));
+		System.out.println("p1: area in range 0,5: "+p1.area(0, 5, 0.0001));
+		System.out.println("p1: area in range 5,0: "+p1.area(5, 0, 0.0001));
+		System.out.println("******************");
+		Polynom p2 = new Polynom("-x+5");
+		System.out.println("p2="+p2);
+		System.out.println("p2: area in range -3.1,0: "+p2.area(-3.1, 0, 0.0001));
+		System.out.println("p2: area in range 1.4,1.8: "+p2.area(1.4, 1.8, 0.0001));
+		System.out.println("p2: area in range 0.5,3.4: "+p2.area(0.5, 3.4, 0.0001));
+		System.out.println("p2: area in range 0,5.5: "+p2.area(0, 5.5, 0.0001));
+		System.out.println("p2: area in range 0,0: "+p2.area(0, 0, 0.0001));
+		System.out.println("p2: area in range 1.2,-45218.3256: "+p2.area(1.2, -45218.3256, 0.0001));
+		System.out.println();
+		System.out.println("*** root test***");
+		System.out.println("p1="+p1);
+		System.out.println("p1: root in range -3.4,-1.35: "+p1.root(-3.4, -1.35, 0.0001));
+		System.out.println("p1: root in range 0,2: "+p1.root(0, 2, 0.0001));
+		System.out.println("p1: root in range -0.7,17.9: "+p1.root(-0.7, 17.9, 0.0001));
+		try {
+			System.out.println("p1: root in range -6,137.5: "+p1.root(-6, 137.5, 0.0001));
+		} catch (Exception e) {
+			System.out.println("ERR: f(-6)*f(137.5)>0 ");
+		}
+		System.out.println("******************");
+		System.out.println("p2="+p2);
+		System.out.println("p2: root in range -779.1,64.7: "+p2.root(-779.1, 64.7, 0.0001));
+		System.out.println("p2: root in range 1.52,5.001: "+p2.root(1.52, 5.001, 0.0001));
+		try {
+			System.out.println("p2: root in range -13,0.3: "+p2.root(-13, 0.3, 0.0001));
+		} catch (Exception e) {
+			System.out.println("ERR: f(-13)*f(0.3)>0 ");
+		}
+		
+	}
+	
+	
 }

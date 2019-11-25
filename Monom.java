@@ -150,12 +150,7 @@ public class Monom implements function{
 		else  if(this.get_power()==1) return this.get_coefficient()+"x";
 		return this.get_coefficient()+"x^"+this.get_power();
 	}
-	/**
-	 * this method check if to monoms equals. if they equals return true else return false.
-	 *  If the difference between they coefficients is Epsilon the method treats them as equal.
-	 * @param m1
-	 * @return
-	 */
+	
 	public boolean equals(Monom m1) {
 		if(this.get_coefficient()==0 && m1.get_coefficient()==0)
 			return true;

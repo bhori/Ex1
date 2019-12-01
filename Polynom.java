@@ -168,18 +168,30 @@ public class Polynom implements Polynom_able{
 	 * @param p1
 	 * @return true iff this polynom represents the same function as p1
 	 */
-	public boolean equals(Polynom_able p1) {
+	public boolean equals(Object  p1) {
 		if(p1==null)
 			throw new RuntimeException("ERR: The polynom is empty");
-		Iterator<Monom> itr1=p1.iteretor();
-		Iterator<Monom> itr2= this.iteretor();
-		while(itr1.hasNext()&& itr2.hasNext()) {
-			if(!itr1.next().equals(itr2.next()))
+		
+		if(p1 instanceof Polynom ) {
+			Polynom p= (Polynom)p1;
+		    Iterator<Monom> itr1=p.iteretor();
+		    Iterator<Monom> itr2= this.iteretor();
+		    while(itr1.hasNext()&& itr2.hasNext()) {
+			   if(!itr1.next().equals(itr2.next()))
+				  return false;
+		    }
+		    if((!itr1.hasNext() && itr2.hasNext()) || (!itr2.hasNext() && itr1.hasNext()))
+               return false;
+		    return true;
+		 }
+		if(p1 instanceof Monom) {
+			if(this.polynom.size()!= 1)
 				return false;
+			return(this.polynom.get(0).equals(p1));
 		}
-		if((!itr1.hasNext() && itr2.hasNext()) || (!itr2.hasNext() && itr1.hasNext()))
-           return false;
-		return true;
+		return false;
+			
+			
 	}
 
 	/**
@@ -321,5 +333,10 @@ public class Polynom implements Polynom_able{
 			s=s.substring(1);
 		return s;
 		
+	}
+	@Override
+	public function initFromString(String s) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

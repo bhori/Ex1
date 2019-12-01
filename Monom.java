@@ -151,12 +151,16 @@ public class Monom implements function{
 		return this.get_coefficient()+"x^"+this.get_power();
 	}
 	
-	public boolean equals(Monom m1) {
-		if(this.get_coefficient()==0 && m1.get_coefficient()==0)
+	public boolean equals(Object obj) {
+		if(obj instanceof Monom) {
+			Monom m=(Monom)obj;
+		    if(this.get_coefficient()==0 && m.get_coefficient()==0)
+			  return true;
+		if(Math.abs(this.get_coefficient()-m.get_coefficient())<EPSILON && this.get_power()==m.get_power())
 			return true;
-		if(Math.abs(this.get_coefficient()-m1.get_coefficient())<EPSILON && this.get_power()==m1.get_power())
-			return true;
+		}
 		return false;
+		
 		
 	}
 	// you may (always) add other methods.
@@ -174,6 +178,16 @@ public class Monom implements function{
 	private static Monom getNewZeroMonom() {return new Monom(ZERO);}
 	private double _coefficient; 
 	private int _power;
+	@Override
+	public function initFromString(String s) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public function copy() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

@@ -103,7 +103,7 @@ public class Polynom implements Polynom_able{
 	public void add(Monom m1) {
 		if(m1==null)
 			throw new RuntimeException("ERR: The monom is empty");
-		if(this.isZero()) {
+		if(this.polynom.size()==0) {
 			polynom.add(m1);
 			return;
 		}
@@ -198,9 +198,7 @@ public class Polynom implements Polynom_able{
 	 * Test if this is the Zero Polynom
 	 */
 	public boolean isZero() {
-		if(this.polynom.size()!=0)
-			return false;
-		return true;
+		return (this.equals(Monom.ZERO));
 	}
 
 	/**
@@ -336,7 +334,6 @@ public class Polynom implements Polynom_able{
 	}
 	@Override
 	public function initFromString(String s) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Polynom(s);
 	}
 }

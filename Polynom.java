@@ -155,9 +155,10 @@ public class Polynom implements Polynom_able{
 		Iterator<Monom> itr=p1.iteretor(); 
 		Polynom_able temp1= new Polynom();
 		while(itr.hasNext()) {
-			Polynom_able temp= this.copy();
-			temp.multiply(itr.next());
-			temp1.add(temp);
+			function temp= this.copy();
+			Polynom_able tempp=(Polynom)temp;
+			tempp.multiply(itr.next());
+			temp1.add(tempp);
 		}
 		this.polynom.clear();
 		this.add(temp1);
@@ -243,13 +244,14 @@ public class Polynom implements Polynom_able{
 	/**
 	 * create a deep copy of this Polynom
 	 */
-	public Polynom_able copy() {
-		Polynom_able p= new Polynom();
+	public function copy() {
+		Polynom p= new Polynom();
 		for(Monom m:polynom)
 		{
 			p.add(new Monom(m));
 		}
-		return p;
+		function f=p;
+		return f;
 	}
 
 	/**

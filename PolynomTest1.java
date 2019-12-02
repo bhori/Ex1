@@ -1,6 +1,6 @@
 package myMath.matala1;
 
-public class PolynomTest {
+public class PolynomTest1 {
 	public static void main(String[] args) {
 		test1();
 		test2();

@@ -127,7 +127,11 @@ public class Monom implements function{
 	 * @param m
 	 */
 	public void add(Monom m) {
-		if(this.get_power()==m.get_power())
+		if(this.isZero() || m.isZero()) {
+			this.set_coefficient(this.get_coefficient()+m.get_coefficient());
+			this.set_power(this.get_power()+m.get_power());
+		}
+		else if(this.get_power()==m.get_power())
 			this.set_coefficient(this.get_coefficient()+m.get_coefficient());
 		else 
 			throw new RuntimeException("ERR: add(m) should get a monom with the same power of  this monom: "+ this.toString());

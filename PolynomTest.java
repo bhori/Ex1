@@ -3,26 +3,29 @@ package myMath.matala1;
 public class PolynomTest {
 	public static void main(String[] args) {
 		test1();
-		test2();
-		test3();
-		test4();
+//		test2();
+//		test3();
+//		test4();
+//		test5();
 	}
 
 	public static void test1() {
-		System.out.println("*****  Test1:  *****");
-		Polynom p1 = new Polynom();
-		String[] monoms = {"1","x","x^2", "0.5x^2"};
-		for(int i=0;i<monoms.length;i++) {
-		 Monom m = new Monom(monoms[i]);
-		 p1.add(m);
-		 double aa = p1.area(0, 1, 0.0001);
-		 System.out.println("polynom: "+p1+" area(x0=0,x1=1,epsilon=0.0001)= "+ aa);
-		}
-		System.out.println("(polynom)': "+p1.derivative());
-		p1.substract(p1.derivative());
-		System.out.println("polynom-(polynom)': "+p1);
-		p1.substract(p1);
-		 System.out.println("(polynom)'-(polynom)': "+p1);
+//		System.out.println("*****  Test1:  *****");
+//		Polynom p1 = new Polynom();
+//		String[] monoms = {"1","x","x^2", "0.5x^2"};
+//		for(int i=0;i<monoms.length;i++) {
+//		 Monom m = new Monom(monoms[i]);
+//		 p1.add(m);
+//		 double aa = p1.area(0, 1, 0.0001);
+//		 System.out.println("polynom: "+p1+" area(x0=0,x1=1,epsilon=0.0001)= "+ aa);
+//		}
+//		System.out.println("(polynom)': "+p1.derivative());
+//		p1.substract(p1.derivative());
+//		System.out.println("polynom-(polynom)': "+p1);
+//		p1.substract(p1);
+//		 System.out.println("(polynom)'-(polynom)': "+p1);
+		Polynom p=new Polynom("0+0+0+0+1");
+		System.out.println(p.isZero());
 	}
 	public static void test2() {
 		System.out.println("*****  Test2:  *****");
@@ -113,6 +116,14 @@ public class PolynomTest {
 			System.out.println("ERR: f(-13)*f(0.3)>0 ");
 		}
 		
+	}
+	
+	private static void test5() {
+		Polynom p1=new Polynom("2.7x^5+0.236x^3-23.7");
+		Polynom_able p2=new Polynom(p1.toString());
+		System.out.println(p1);
+		System.out.println(p2);
+		System.out.println(p1==p2);
 	}
 	
 	

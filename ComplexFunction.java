@@ -1,13 +1,13 @@
 package myMath.matala1;
 
 public class ComplexFunction implements complex_function {
-	private BinaryTree bt;
+	private Node root;				
 //constructors
-	public ComplexFunction() {
-		bt = new BinaryTree();
+	public ComplexFunction(function f1) {
+		this.root = new Node(null, f1, null);
 	}
 	public ComplexFunction(Operation op, function f1, function f2) {
-		bt = new BinaryTree(op, f1, f2);
+		this.root = new Node(op, f1, f2);
 	}
 
 	
@@ -25,7 +25,7 @@ public class ComplexFunction implements complex_function {
 	}
 	
 	public void plus(function f1) {
-		
+		Operation.Comp
 	}
 	
 	public void mul(function f1) {

@@ -28,13 +28,23 @@ class MonomTest {
 	void monomTest() {
 		String[] goodMonoms = {"x^2", "2","x^3.", "x^3.0", "-x", "x^6467", "+3*X^+7", ".6",  "-3.2x^2","0"};
 		String[] badMonoms = {"fkfsa45","","x^-4",  "3x^2.1", "fwqfxsaf"};
+		Monom m,m1;
 		for(int i=0;i<goodMonoms.length;i++) {
-			Monom m = new Monom(goodMonoms[i]);
+		    m = new Monom(goodMonoms[i]);
 			String s = m.toString();
-			Monom m1 = new Monom(s);
+			m1 = new Monom(s);
 			assertEquals(m, m1);
 		}
-		
+			boolean fl=true;
+			try {
+				for(int i=0;i<badMonoms.length;i++) {
+					m= new Monom(badMonoms[i]);
+				}
+			}
+			catch(Exception e) {
+				fl=false;
+			}
+			assertFalse(fl);
 	}
 	
 	@Test
@@ -82,6 +92,26 @@ class MonomTest {
 		m2=new Monom("2x^2");
 		m1.add(m2);
 		assertEquals(new Monom("-2x^2"), m1);
+		boolean fl=true;
+		try {
+			m1=new Monom("-4x^6");
+			m2=new Monom("2x^2");
+			m1.add(m2);
+		}
+		catch(Exception e) {
+			fl=false;
+		}
+		assertFalse(fl);
+		fl=true;
+		try {
+			m1=new Monom("-4x^6");
+			m2=new Monom("2");
+			m1.add(m2);
+		}
+		catch(Exception e) {
+			fl=false;
+		}
+		assertFalse(fl);
 	}
 	
 	@Test

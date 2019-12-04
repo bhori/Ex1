@@ -5,9 +5,14 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.awt.*;
 import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 public class Functions_GUI implements functions  {
-	private Collection<function> functions;
+	private ArrayList<function> functions;
 	
 	public Functions_GUI() {
 	   functions= new ArrayList<function>();
@@ -15,22 +20,17 @@ public class Functions_GUI implements functions  {
 
 	@Override 
 	public boolean add(function arg0) {
-		functions.add(arg0);
-		return true;
+		return functions.add(arg0);
 	}
 
 	@Override
 	public boolean addAll(Collection<? extends function> arg0) {
-//		Iterator<? extends function> itr=arg0.iterator();
-//		while(itr.hasNext())
-//			this.add(itr.next());
-//		return true;
 		return functions.addAll(arg0);
 	}
 
 	@Override
 	public void clear() {
-		functions.removeAll(functions);
+		functions.clear();
 		
 	}
 
@@ -86,13 +86,44 @@ public class Functions_GUI implements functions  {
 
 	@Override
 	public void initFromFile(String file) throws IOException {
-		// TODO Auto-generated method stub
+		try 
+	        {
+	          BufferedReader br = new BufferedReader(new FileReader(file));
+	          while(br.ready()) {
+	        	String function = "";
+	        	
+	            while ((function = br.readLine()) != null) 
+	            {
+	                functions.add(functions.get(0).initFromString(function));
+	            }
+	          }
+
+	        } 
+	        catch (IOException e) 
+	        {
+	            e.printStackTrace();
+	            System.out.println("could not read file");
+	        }
 		
 	}
 
 	@Override
 	public void saveToFile(String file) throws IOException {
-		// TODO Auto-generated method stub
+
+		try 
+		{
+			PrintWriter pw = new PrintWriter(new File(file));
+			
+
+
+			pw.write(this.toString());
+			pw.close();
+		} 
+		catch (FileNotFoundException e) 
+		{
+			e.printStackTrace();
+			return;
+		}
 		
 	}
 
@@ -106,6 +137,13 @@ public class Functions_GUI implements functions  {
 	public void drawFunctions(String json_file) {
 		// TODO Auto-generated method stub
 		
+	}
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for(int i=0; i<functions.size(); i++) {
+		    sb.append(sb+ "/n"+ functions.get(i));
+		}
+		return  sb.toString();
 	}
 
 }

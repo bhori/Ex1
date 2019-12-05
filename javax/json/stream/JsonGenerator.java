@@ -37,14 +37,14 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package javax.json.stream;
+package  myMath.matala1.javax.json.stream;
 
 import java.io.Closeable;
 import java.io.Flushable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import javax.json.JsonValue;
+import  myMath.matala1.javax.json.JsonValue;
 
 /**
  * Writes JSON data to an output source in a streaming way. The class

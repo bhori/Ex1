@@ -37,13 +37,13 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package javax.json.spi;
+package  myMath.matala1.javax.json.spi;
 
-import javax.json.*;
-import javax.json.stream.JsonGenerator;
-import javax.json.stream.JsonGeneratorFactory;
-import javax.json.stream.JsonParser;
-import javax.json.stream.JsonParserFactory;
+import  myMath.matala1.javax.json.*;
+import  myMath.matala1.javax.json.stream.JsonGenerator;
+import  myMath.matala1.javax.json.stream.JsonGeneratorFactory;
+import  myMath.matala1.javax.json.stream.JsonParser;
+import  myMath.matala1.javax.json.stream.JsonParserFactory;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;

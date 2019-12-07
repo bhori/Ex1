@@ -68,4 +68,4 @@
  *
  * @since JSON Processing 1.0
  */
-package javax.json.stream;
+package  myMath.matala1.javax.json.stream;

@@ -38,9 +38,9 @@
  * holder.
  */
 
-package javax.json.stream;
+package  myMath.matala1.javax.json.stream;
 
-import javax.json.JsonException;
+import  myMath.matala1.javax.json.JsonException;
 
 /**
  * {@code JsonGenerationException} indicates an incorrect JSON is

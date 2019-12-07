@@ -38,7 +38,7 @@
  * holder.
  */
 
-package javax.json;
+package  myMath.matala1.javax.json;
 
 /**
  * Super type for the two structured types in JSON ({@link JsonObject object}s

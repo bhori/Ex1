@@ -38,7 +38,7 @@
  * holder.
  */
 
-package javax.json;
+package myMath.matala1.javax.json;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -48,11 +48,11 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Map;
-import javax.json.spi.JsonProvider;
-import javax.json.stream.JsonGenerator;
-import javax.json.stream.JsonGeneratorFactory;
-import javax.json.stream.JsonParser;
-import javax.json.stream.JsonParserFactory;
+import  myMath.matala1.javax.json.spi.JsonProvider;
+import  myMath.matala1.javax.json.stream.JsonGenerator;
+import  myMath.matala1.javax.json.stream.JsonGeneratorFactory;
+import  myMath.matala1.javax.json.stream.JsonParser;
+import  myMath.matala1.javax.json.stream.JsonParserFactory;
 
 /**
  * Factory class for creating JSON processing objects.

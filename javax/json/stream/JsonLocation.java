@@ -38,7 +38,7 @@
  * holder.
  */
 
-package javax.json.stream;
+package  myMath.matala1.javax.json.stream;
 
 /**
  * Provides the location information of a JSON event in an input source. The

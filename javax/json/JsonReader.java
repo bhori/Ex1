@@ -38,7 +38,7 @@
  * holder.
  */
 
-package javax.json;
+package  myMath.matala1.javax.json;
 
 import java.io.Closeable;
 

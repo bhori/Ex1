@@ -53,4 +53,4 @@
  *
  * @since JSON Processing 1.0
  */
-package javax.json.spi;
+package  myMath.matala1.javax.json.spi;

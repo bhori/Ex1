@@ -37,7 +37,7 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package javax.json;
+package  myMath.matala1.javax.json;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

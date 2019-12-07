@@ -38,15 +38,15 @@
  * holder.
  */
 
-package javax.json.stream;
+package  myMath.matala1.javax.json.stream;
 
 import java.io.InputStream;
 import java.io.Reader;
 import java.nio.charset.Charset;
 import java.util.Map;
 
-import javax.json.JsonArray;
-import javax.json.JsonObject;
+import  myMath.matala1.javax.json.JsonArray;
+import  myMath.matala1.javax.json.JsonObject;
 
 /**
  * Factory for creating {@link JsonParser} instances. If a factory

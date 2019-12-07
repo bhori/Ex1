@@ -37,7 +37,7 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package javax.json;
+package  myMath.matala1.javax.json;
 
 /**
  * <p>This interface represents an immutable implementation of a JSON Patch

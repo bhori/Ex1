@@ -38,7 +38,7 @@
  * holder.
  */
 
-package javax.json;
+package  myMath.matala1.javax.json;
 
 /**
  * An immutable JSON string value.

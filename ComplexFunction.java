@@ -9,27 +9,30 @@ public class ComplexFunction implements complex_function {
 	public ComplexFunction(function f1) {
 		this(null, f1, null);
 	}
-	
 	public ComplexFunction(String s, function f1, function f2) {
 		if(s==null) {
 			this.op=Operation.None;
-		}else if(s.equals("mul")) {
+		}else if((s.equals("mul")) || (s.equals("Mul")) || (s.equals("Times"))) {
 			this.op=Operation.Times;
-		}else if(s.equals("div")) {
+		}else if((s.equals("div")) || (s.equals("Divid"))) {
 			this.op=Operation.Divid;
-		}else if(s.equals("max")) {
+		}else if((s.equals("max")) || (s.equals("Max"))) {
 			this.op=Operation.Max;
-		}else if(s.equals("min")) {
+		}else if((s.equals("min")) || (s.equals("Min"))) {
 			this.op=Operation.Min;
-		}else if(s.equals("comp")) {
+		}else if((s.equals("comp")) || (s.equals("Comp"))) {
 			this.op=Operation.Comp;
-		}else if(s.equals("plus")) {
+		}else if((s.equals("plus")) || (s.equals("Plus"))) {
 			this.op=Operation.Plus;
 		}else {
 			this.op=Operation.Error;
 		}
-		this.left = f1;
-		this.right = f2;
+		this.left = f1.copy();
+		if (f2 == null) {
+			this.right=null;
+		}else {
+			this.right = f2.copy();
+		}	
 	}
 
 
@@ -37,7 +40,8 @@ public class ComplexFunction implements complex_function {
 	public double f(double x) {
 		double left=0, right=0, result=0;
 		if(this.op==Operation.Error) {
-			System.out.println("there is an unknown Operation, cannot calculate the result.");
+//			System.out.println("there is an unknown Operation, cannot calculate the result.");
+			throw new RuntimeException("there is an unknown Operation, cannot calculate the result.");
 		}
 		if(this.op==Operation.None) {
 			result=this.left.f(x);
@@ -52,7 +56,11 @@ public class ComplexFunction implements complex_function {
 		}else if(this.op==Operation.Times) {
 			result=left*right;
 		}else if(this.op==Operation.Divid) {
-			result=left/right;
+			if(right==0) {
+				throw new RuntimeException("cannot divide by zero, the function is not set for x = "+x);
+			}else {
+				result=left/right;
+			}
 		}else if(this.op==Operation.Max) {
 			result=Math.max(left, right);
 		}else if(this.op==Operation.Min) {
@@ -61,8 +69,33 @@ public class ComplexFunction implements complex_function {
 		return result;
 	}
 	
+	
 	public function initFromString(String s) {
-		return null;
+		if (s.indexOf('(')==-1){
+			if(s.equals("null")) {
+				return null;
+			}else {
+				function cf =new Polynom(s);
+				return cf;
+			}
+		}else {
+//			int counter=1;
+//			int i;
+//			for(i=s.indexOf('(')+1; i<s.length();i++) {
+//				if(s.charAt(i)=='(') {
+//					counter++;
+//				}else if(s.charAt(i)==',') {
+//					counter--;
+//				}
+//				if(counter==0) {
+//					break;
+//				}
+//			}
+			function leftFunc = initFromString(s.substring(s.indexOf('(')+1,s.lastIndexOf(','))); //i replace s.lastIndexOf
+			function rightFunc = initFromString(s.substring(s.lastIndexOf(',')+1,s.length()-1)); //i replace s.lastIndexOf
+			function cf = new ComplexFunction(s.substring(0, s.indexOf('(')), leftFunc, rightFunc);
+			return cf;
+		}
 	}
 	
 	public String toString() {
@@ -70,8 +103,18 @@ public class ComplexFunction implements complex_function {
 	}
 	
 	public function copy() {
-		ComplexFunction cf = new ComplexFunction(""+this.getOp(), this.left(), this.right());
-		return cf;
+		if(this.right()==null) {
+			ComplexFunction cf = new ComplexFunction(""+this.getOp(), this.left().copy(), null);
+			return cf;
+		}else {
+			ComplexFunction cf = new ComplexFunction(""+this.getOp(), this.left().copy(), this.right().copy());
+			return cf;
+		}
+//		return cf;
+	}
+	
+	public boolean equals(Object obj) {
+		return true;
 	}
 	
 	public void plus(function f1) {
@@ -115,10 +158,10 @@ public class ComplexFunction implements complex_function {
 	}
 	
 	public function right() {
-		if(this.right==null) {
-			System.out.println("there is no function on the right");
-			return null;
-		}
+//		if(this.right==null) {
+//			System.out.println("there is no function on the right");
+//			return null;
+//		}
 		return this.right;
 	}
 	

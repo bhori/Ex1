@@ -27,6 +27,8 @@ class ComplexFunctionTest {
 		assertEquals(4, cf5.f(2));
 		ComplexFunction cf6 = new ComplexFunction("comp", p1, p2);
 		assertEquals(20, cf6.f(2));
+		function cf7 = cf1.copy();
+		assertEquals(10, cf7.f(2));
 	}
 	
 	 

@@ -2,9 +2,29 @@ package myMath.matala1;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ComplexFunctionTest {
+
+	@BeforeAll
+	static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterAll
+	static void tearDownAfterClass() throws Exception {
+	}
+
+	@BeforeEach
+	void setUp() throws Exception {
+	}
+
+	@AfterEach
+	void tearDown() throws Exception {
+	}
 
 //	@Test
 //	void test() {
@@ -31,6 +51,13 @@ class ComplexFunctionTest {
 		assertEquals(10, cf7.f(2));
 	}
 	
-	 
+	@Test
+	void initFromStringTest() {
+		Polynom p1 = new Polynom("x+x^2");
+		Polynom p2 = new Polynom("x^2");
+		ComplexFunction cf1 = new ComplexFunction("mul",p1,p2);
+		function cf2 = cf1.initFromString(cf1.toString());
+		assertEquals(cf1.toString(), cf2.toString());
+	}
 
 }

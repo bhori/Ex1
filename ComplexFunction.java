@@ -7,8 +7,19 @@ public class ComplexFunction implements complex_function {
 	
 	//constructors
 	public ComplexFunction(function f1) {
-		this(null, f1, null);
+		this(Operation.None, f1, null);
 	}
+	
+	public ComplexFunction(Operation op, function f1, function f2) {
+		this.op=op;
+		this.left = f1.copy();
+		if (f2 == null) {
+			this.right=null;
+		}else {
+			this.right = f2.copy();
+		}
+	}
+	
 	public ComplexFunction(String s, function f1, function f2) {
 		if(s==null) {
 			this.op=Operation.None;
@@ -45,26 +56,26 @@ public class ComplexFunction implements complex_function {
 		}
 		if(this.op==Operation.None) {
 			result=this.left.f(x);
-		}
-		if(this.op==Operation.Comp) {
+		}else if(this.op==Operation.Comp) {
 			result=this.left.f(this.right.f(x));
-		}
-		left = this.left.f(x);
-		right = this.right.f(x);
-		if(this.op==Operation.Plus) {
-			result=left+right;
-		}else if(this.op==Operation.Times) {
-			result=left*right;
-		}else if(this.op==Operation.Divid) {
-			if(right==0) {
-				throw new RuntimeException("cannot divide by zero, the function is not set for x = "+x);
-			}else {
-				result=left/right;
+		}else{
+			left = this.left.f(x);
+			right = this.right.f(x);
+			if(this.op==Operation.Plus) {
+				result=left+right;
+			}else if(this.op==Operation.Times) {
+				result=left*right;
+			}else if(this.op==Operation.Divid) {
+				if(right==0) {
+					throw new RuntimeException("cannot divide by zero, the function is not set for x = "+x);
+				}else {
+					result=left/right;
+				}
+			}else if(this.op==Operation.Max) {
+				result=Math.max(left, right);
+			}else if(this.op==Operation.Min) {
+				result=Math.min(left, right);
 			}
-		}else if(this.op==Operation.Max) {
-			result=Math.max(left, right);
-		}else if(this.op==Operation.Min) {
-			result=Math.min(left, right);
 		}
 		return result;
 	}
@@ -79,21 +90,24 @@ public class ComplexFunction implements complex_function {
 				return cf;
 			}
 		}else {
-//			int counter=1;
-//			int i;
-//			for(i=s.indexOf('(')+1; i<s.length();i++) {
-//				if(s.charAt(i)=='(') {
-//					counter++;
-//				}else if(s.charAt(i)==',') {
-//					counter--;
-//				}
-//				if(counter==0) {
-//					break;
-//				}
-//			}
-			function leftFunc = initFromString(s.substring(s.indexOf('(')+1,s.lastIndexOf(','))); //i replace s.lastIndexOf
-			function rightFunc = initFromString(s.substring(s.lastIndexOf(',')+1,s.length()-1)); //i replace s.lastIndexOf
-			function cf = new ComplexFunction(s.substring(0, s.indexOf('(')), leftFunc, rightFunc);
+			int counter=1;
+			int i;
+			for(i=s.indexOf('(')+1; i<s.length();i++) {
+				if(s.charAt(i)=='(') {
+					counter++;
+				}else if(s.charAt(i)==',') {
+					counter--;
+				}
+				if(counter==0) {
+					break;
+				}
+			}
+			String left = s.substring(s.indexOf('(')+1,i);
+			String right = s.substring(i+1,s.length()-1);
+			function leftFunc = initFromString(left); 
+			function rightFunc = initFromString(right);
+			String operation = s.substring(0, s.indexOf('('));
+			function cf = new ComplexFunction(operation, leftFunc, rightFunc);
 			return cf;
 		}
 	}
@@ -104,16 +118,50 @@ public class ComplexFunction implements complex_function {
 	
 	public function copy() {
 		if(this.right()==null) {
-			ComplexFunction cf = new ComplexFunction(""+this.getOp(), this.left().copy(), null);
+			ComplexFunction cf = new ComplexFunction(this.getOp(), this.left().copy(), null);
 			return cf;
 		}else {
-			ComplexFunction cf = new ComplexFunction(""+this.getOp(), this.left().copy(), this.right().copy());
+			ComplexFunction cf = new ComplexFunction(this.getOp(), this.left().copy(), this.right().copy());
 			return cf;
 		}
 //		return cf;
 	}
 	
 	public boolean equals(Object obj) {
+		if(obj instanceof Polynom) {
+			Polynom p = (Polynom)obj;
+			for(int i=1; i<=50; i++) {
+				if(this.f(i)!=p.f(i)) {
+					return false;
+				}
+				double random = Math.random()*100;
+				if(this.f(random)!=p.f(random)) {
+					return false;
+				}
+			}	
+		}else if(obj instanceof Monom) {
+			Monom m = (Monom)obj;
+			for(int i=1; i<=50; i++) {
+				if(this.f(i)!=m.f(i)) {
+					return false;
+				}
+				double random = Math.random()*100;
+				if(this.f(random)!=m.f(random)) {
+					return false;
+				}
+			}	
+		}else if(obj instanceof ComplexFunction) {
+			ComplexFunction cf= (ComplexFunction)obj;
+			for(int i=1; i<=50; i++) {
+				if(this.f(i)!=cf.f(i)) {
+					return false;
+				}
+				double random = Math.random()*100;
+				if(this.f(random)!=cf.f(random)) {
+					return false;
+				}
+			}			
+		}
 		return true;
 	}
 	

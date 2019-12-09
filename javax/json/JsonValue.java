@@ -37,7 +37,7 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package  myMath.matala1.javax.json;
+package  Ex1.javax.json;
 
 /**
  * <code>JsonValue</code> represents an immutable JSON value.

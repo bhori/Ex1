@@ -38,7 +38,7 @@
  * holder.
  */
 
-package  myMath.matala1.javax.json.stream;
+package  Ex1.javax.json.stream;
 
 import java.io.OutputStream;
 import java.io.Writer;

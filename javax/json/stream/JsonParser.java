@@ -38,16 +38,16 @@
  * holder.
  */
 
-package  myMath.matala1.javax.json.stream;
+package  Ex1.javax.json.stream;
 
 
 import java.io.Closeable;
 import java.math.BigDecimal;
 import java.util.stream.Stream;
 
-import  myMath.matala1.javax.json.JsonArray;
-import  myMath.matala1.javax.json.JsonObject;
-import  myMath.matala1.javax.json.JsonValue;
+import Ex1.javax.json.JsonArray;
+import Ex1.javax.json.JsonObject;
+import Ex1.javax.json.JsonValue;
 
 import java.util.Map;
 

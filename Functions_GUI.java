@@ -1,4 +1,4 @@
-package myMath.matala1;
+package Ex1;
 
 import java.awt.Color;
 import java.io.BufferedReader;
@@ -12,14 +12,14 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import myMath.matala1.javax.json.*;
+
+import Ex1.javax.json.*;
 
 
 
 public class Functions_GUI implements functions  {
 	private ArrayList<function> functions;
-	public static Color[] Colors = {Color.blue, Color.cyan, Color.MAGENTA, Color.ORANGE, 
-			Color.red, Color.GREEN, Color.PINK};
+	public static Color[] Colors = {Color.blue, Color.cyan, Color.MAGENTA, Color.ORANGE, Color.red, Color.GREEN, Color.PINK};
 	public Functions_GUI() {
 	   functions= new ArrayList<function>();
 	}

@@ -38,19 +38,19 @@
  * holder.
  */
 
-package  myMath.matala1.javax.json.stream;
+package  Ex1.javax.json.stream;
 
 import java.util.Map;
 import java.util.HashMap;
 import java.util.stream.Collector;
 
-import  myMath.matala1.javax.json.Json;
-import  myMath.matala1.javax.json.JsonArray;
-import  myMath.matala1.javax.json.JsonArrayBuilder;
-import  myMath.matala1.javax.json.JsonException;
-import  myMath.matala1.javax.json.JsonObject;
-import  myMath.matala1.javax.json.JsonObjectBuilder;
-import  myMath.matala1.javax.json.JsonValue;
+import Ex1.javax.json.Json;
+import Ex1.javax.json.JsonArray;
+import Ex1.javax.json.JsonArrayBuilder;
+import Ex1.javax.json.JsonException;
+import Ex1.javax.json.JsonObject;
+import Ex1.javax.json.JsonObjectBuilder;
+import Ex1.javax.json.JsonValue;
 
 import java.util.function.BinaryOperator;
 import java.util.function.Function;

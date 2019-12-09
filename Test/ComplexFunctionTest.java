@@ -1,4 +1,4 @@
-package myMath.matala1;
+package Ex1.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,6 +7,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import Ex1.ComplexFunction;
+import Ex1.Polynom;
+import Ex1.function;
 
 class ComplexFunctionTest {
 

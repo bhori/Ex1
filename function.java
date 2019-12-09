@@ -1,4 +1,4 @@
-package myMath.matala1;
+package Ex1;
 
 import java.io.Serializable;
 

@@ -37,13 +37,8 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package  myMath.matala1.javax.json.spi;
+package  Ex1.javax.json.spi;
 
-import  myMath.matala1.javax.json.*;
-import  myMath.matala1.javax.json.stream.JsonGenerator;
-import  myMath.matala1.javax.json.stream.JsonGeneratorFactory;
-import  myMath.matala1.javax.json.stream.JsonParser;
-import  myMath.matala1.javax.json.stream.JsonParserFactory;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
@@ -52,6 +47,13 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.ServiceLoader;
+
+import Ex1.javax.json.*;
+import Ex1.javax.json.stream.JsonGenerator;
+import Ex1.javax.json.stream.JsonGeneratorFactory;
+import Ex1.javax.json.stream.JsonParser;
+import Ex1.javax.json.stream.JsonParserFactory;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 

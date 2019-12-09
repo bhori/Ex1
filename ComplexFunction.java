@@ -1,4 +1,4 @@
-package myMath.matala1;
+package Ex1;
 
 public class ComplexFunction implements complex_function {
 	private function left;
@@ -127,6 +127,10 @@ public class ComplexFunction implements complex_function {
 //		return cf;
 	}
 	
+//	public boolean equals(function obj) {
+//		
+//	}
+	
 	public boolean equals(Object obj) {
 		if(obj instanceof Polynom) {
 			Polynom p = (Polynom)obj;
@@ -156,7 +160,7 @@ public class ComplexFunction implements complex_function {
 				if(this.f(i)!=cf.f(i)) {
 					return false;
 				}
-				double random = Math.random()*100;
+				double random = (Math.random()*100)+50;
 				if(this.f(random)!=cf.f(random)) {
 					return false;
 				}

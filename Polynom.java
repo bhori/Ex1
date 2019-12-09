@@ -1,4 +1,4 @@
-package myMath.matala1;
+package Ex1;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 import javax.management.RuntimeErrorException;
 
-import myMath.matala1.Monom;
+import Ex1.Monom;
 //StringBuilder sb = new StringBuilder();
 //
 //sb.append("first name");

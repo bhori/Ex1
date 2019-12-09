@@ -1,24 +1,25 @@
-package myMath.matala1;
+package Ex1.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import Ex1.Monom;
+import Ex1.Polynom;
+import Ex1.Polynom_able;
+import Ex1.function;
+
 class PolynomTest1 {
 
-//	@Test
-//	void test() {
-//		fail("Not yet implemented");
-//		
-//	}
+
 	@Test
 	void testIsZero() {
 		Polynom p1=new Polynom("2x");
 		assertFalse(p1.isZero());
 		Polynom p2=new Polynom("0");
-		assertFalse(p2.isZero());
+		assertTrue(p2.isZero());
 		Polynom p3=new Polynom();
-		assertTrue(p3.isZero());
+		assertFalse(p3.isZero());
 	}
 	
 	@Test
@@ -107,7 +108,7 @@ class PolynomTest1 {
 	@Test
 	void testCopy() {
 		Polynom p1=new Polynom("2.7x^5+0.236x^3-23.7");
-		Polynom_able p2=p1.copy();
+		function p2=p1.copy();
 		assertEquals(p1.toString(), p2.toString());
 	}
 	

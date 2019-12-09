@@ -181,7 +181,10 @@ public class Polynom implements Polynom_able{
 	public boolean equals(Object  p1) {
 		if(p1==null)
 			throw new RuntimeException("ERR: The polynom is empty");
-		
+		if(p1 instanceof ComplexFunction ) {
+			ComplexFunction cf=(ComplexFunction)p1;
+			return(cf.equals(this.polynom));	
+		}
 		if(p1 instanceof Polynom ) {
 			Polynom p= (Polynom)p1;
 		    Iterator<Monom> itr1=p.iteretor();

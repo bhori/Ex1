@@ -60,6 +60,7 @@ public class Monom implements function{
 		// The flag is to check if has 'x' in the string.
 		boolean flag= false;
 		s=s.toLowerCase();
+		s=s.replace(" ", "");
 		// Checking if the string's shape is "x^3" or "x" etc.
 		if(s.charAt(0)=='x')
 			//Instead "x^3" "1x^3"

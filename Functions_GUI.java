@@ -149,13 +149,29 @@ public class Functions_GUI implements functions  {
 			}
 			x0+=x_step;
 		}
+		
 		StdDraw.setXscale(rx.get_min(), rx.get_max());
 		StdDraw.setYscale(ry.get_min(), ry.get_max());
-		
+		for(int i=(int)rx.get_min();i<=rx.get_max();i++) {
+			StdDraw.setPenRadius(0.001);
+			StdDraw.line(i, ry.get_min(), i, ry.get_max());
+			StdDraw.setPenRadius(0.004);
+			StdDraw.text(i, -1, ""+i);
+		}
+		for(int i=(int)ry.get_min();i<=ry.get_max();i++) {
+			StdDraw.setPenRadius(0.001);
+			StdDraw.line(rx.get_min(),i , rx.get_max(),i );
+			StdDraw.setPenRadius(0.004);
+			StdDraw.text(0.2, i, ""+i);
+		}
+		StdDraw.setPenRadius(0.004);
+		StdDraw.line(rx.get_min(), 0, rx.get_max(), 0);
+		StdDraw.line(0, ry.get_min(), 0, ry.get_max());
 		// plot the approximation to the function
 		for(int a=0;a<size;a++) {
 			int c = a%Colors.length;
 			StdDraw.setPenColor(Colors[c]);
+			StdDraw.setPenRadius(0.008);
 		    System.out.println(a+") "+Colors[a]+"  f(x)= "+functions.get(a));
 			for (int i = 0; i < n; i++) {
 				StdDraw.line(x[i], yy[a][i], x[i+1], yy[a][i+1]);

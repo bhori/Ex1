@@ -66,4 +66,4 @@
  * They can be used to retrieve, transform or manipulate values in an
  * object model.
  */
-package  Ex1.javax.json;
+package  javax.json;

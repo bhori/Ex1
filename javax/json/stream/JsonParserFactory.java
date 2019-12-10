@@ -38,15 +38,15 @@
  * holder.
  */
 
-package  Ex1.javax.json.stream;
+package  javax.json.stream;
 
 import java.io.InputStream;
 import java.io.Reader;
 import java.nio.charset.Charset;
 import java.util.Map;
 
-import Ex1.javax.json.JsonArray;
-import Ex1.javax.json.JsonObject;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
 
 /**
  * Factory for creating {@link JsonParser} instances. If a factory

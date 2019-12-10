@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-import Ex1.javax.json.*;
+import javax.json.*;
 
 
 
@@ -95,14 +95,14 @@ public class Functions_GUI implements functions  {
 		try 
 	        {
 	          BufferedReader br = new BufferedReader(new FileReader(file));
-	          while(br.ready()) {
+	          //while(br.ready()) {
 	        	String function = "";
 	        	
 	            while ((function = br.readLine()) != null) 
 	            {
 	                functions.add(functions.get(0).initFromString(function));
 	            }
-	          }
+	         // }
 
 	        } 
 	        catch (IOException e) 
@@ -118,10 +118,8 @@ public class Functions_GUI implements functions  {
 
 		try 
 		{
-			PrintWriter pw = new PrintWriter(new File(file));
-			
-
-
+			File f=new File(file);
+			PrintWriter pw = new PrintWriter(file);
 			pw.write(this.toString());
 			pw.close();
 		} 
@@ -192,13 +190,25 @@ public class Functions_GUI implements functions  {
 			//we can close IO resource and JsonReader now
 			jsonReader.close();
 			fis.close();
-			JsonObject jrx = jsonObject.getJsonObject("rx");
-			jrx.getJsonNumber("min").doubleValue();
-			Range rx = new Range(jrx.getJsonNumber("min").doubleValue(),jrx.getJsonNumber("max").doubleValue());
-			JsonObject jry = jsonObject.getJsonObject("ry");
-			jry.getJsonNumber("min").doubleValue();
-			Range ry = new Range(jry.getJsonNumber("min").doubleValue(),jry.getJsonNumber("max").doubleValue());
-			drawFunctions(jsonObject.getInt("width"), jsonObject.getInt("height"), rx, ry,jsonObject.getInt("resolution"));
+			//JsonObject jrx = jsonObject.getJsonObject("Range_X");
+			JsonArray jsonArrayx = jsonObject.getJsonArray("Range_X");
+			double[] x = new double[jsonArrayx.size()];
+			int index = 0;
+			for(JsonValue value : jsonArrayx){
+				x[index++] = Double.parseDouble(value.toString());
+			}
+			//jrx.getJsonNumber("min").doubleValue();
+			Range rx = new Range(x[0],x[1]);
+			//JsonObject jry = jsonObject.getJsonObject("Range_Y");
+			JsonArray jsonArrayy = jsonObject.getJsonArray("Range_Y");
+			double[] y = new double[jsonArrayy.size()];
+			int indexy = 0;
+			for(JsonValue value : jsonArrayy){
+				y[indexy++] = Double.parseDouble(value.toString());
+			}
+			//jry.getJsonNumber("min").doubleValue();
+			Range ry = new Range(y[0],y[1]);
+			drawFunctions(jsonObject.getInt("Width"), jsonObject.getInt("Height"), rx, ry,jsonObject.getInt("Resolution"));
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -209,9 +219,13 @@ public class Functions_GUI implements functions  {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		for(int i=0; i<functions.size(); i++) {
-		    sb.append(sb+ "/n"+ functions.get(i));
+		    sb.append(functions.get(i)+ "\n");
 		}
 		return  sb.toString();
+	}
+
+	public Object get(int i) {
+        return functions.get(i);
 	}
 
 }

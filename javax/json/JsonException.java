@@ -38,7 +38,7 @@
  * holder.
  */
 
-package  Ex1.javax.json;
+package  javax.json;
 
 /**
  * <code>JsonException</code> indicates that some exception happened during

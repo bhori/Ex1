@@ -38,7 +38,7 @@
  * holder.
  */
 
-package  Ex1.javax.json;
+package  javax.json;
 
 import java.io.InputStream;
 import java.io.Reader;

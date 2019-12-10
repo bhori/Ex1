@@ -37,14 +37,14 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package  Ex1.javax.json.stream;
+package  javax.json.stream;
 
 import java.io.Closeable;
 import java.io.Flushable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import Ex1.javax.json.JsonValue;
+import javax.json.JsonValue;
 
 /**
  * Writes JSON data to an output source in a streaming way. The class

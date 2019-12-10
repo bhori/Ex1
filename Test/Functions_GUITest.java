@@ -33,20 +33,19 @@ import Ex1.functions;
 class Functions_GUITest {
 	public static void main(String[] a) {
 		functions data = FunctionsFactory();
-	//	int w=1000, h=600, res=200;
-	//	Range rx = new Range(-10,10);
-	//	Range ry = new Range(-5,15);
-//		data.drawFunctions(w,h,rx,ry,res);
-		String file = "function_file.txt";
-		String file2 = "function_file2.txt";
-		try {
-			data.saveToFile(file);
-			Functions_GUI data2 = new Functions_GUI();
-			data2.initFromFile(file);
-			data.saveToFile(file2);
-		}
-		catch(Exception e) {e.printStackTrace();}
-		
+		int w=1000, h=600, res=300;
+		Range rx = new Range(-10,10);
+		Range ry = new Range(-5,15);
+		data.drawFunctions(w,h,rx,ry,res);
+//		String file = "function_file.txt";
+//		String file2 = "function_file2.txt";
+//		try {
+//			data.saveToFile(file);
+//			Functions_GUI data2 = new Functions_GUI();
+//			data2.initFromFile(file);
+//			data.saveToFile(file2);
+//		}
+//		catch(Exception e) {e.printStackTrace();}
 		String JSON_param_file = "GUI_params.txt";
 		data.drawFunctions(JSON_param_file);
 	}

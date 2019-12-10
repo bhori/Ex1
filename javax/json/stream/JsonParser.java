@@ -38,16 +38,16 @@
  * holder.
  */
 
-package  Ex1.javax.json.stream;
+package  javax.json.stream;
 
 
 import java.io.Closeable;
 import java.math.BigDecimal;
 import java.util.stream.Stream;
 
-import Ex1.javax.json.JsonArray;
-import Ex1.javax.json.JsonObject;
-import Ex1.javax.json.JsonValue;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonValue;
 
 import java.util.Map;
 

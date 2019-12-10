@@ -68,4 +68,4 @@
  *
  * @since JSON Processing 1.0
  */
-package  Ex1.javax.json.stream;
+package  javax.json.stream;

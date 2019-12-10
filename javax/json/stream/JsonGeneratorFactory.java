@@ -38,7 +38,7 @@
  * holder.
  */
 
-package  Ex1.javax.json.stream;
+package  javax.json.stream;
 
 import java.io.OutputStream;
 import java.io.Writer;

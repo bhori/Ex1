@@ -38,7 +38,7 @@
  * holder.
  */
 
-package Ex1.javax.json;
+package javax.json;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -49,11 +49,11 @@ import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Map;
 
-import Ex1.javax.json.spi.JsonProvider;
-import Ex1.javax.json.stream.JsonGenerator;
-import Ex1.javax.json.stream.JsonGeneratorFactory;
-import Ex1.javax.json.stream.JsonParser;
-import Ex1.javax.json.stream.JsonParserFactory;
+import javax.json.spi.JsonProvider;
+import javax.json.stream.JsonGenerator;
+import javax.json.stream.JsonGeneratorFactory;
+import javax.json.stream.JsonParser;
+import javax.json.stream.JsonParserFactory;
 
 /**
  * Factory class for creating JSON processing objects.

@@ -100,8 +100,7 @@ public class Functions_GUI implements functions  {
 	        	
 	            while ((function = br.readLine()) != null) 
 	            {
-	            	ComplexFunction cf = new ComplexFunction(new Monom("x^2"));
-	                functions.add(cf.initFromString(function));
+	                functions.add(functions.get(0).initFromString(function));
 	            }
 	          }
 

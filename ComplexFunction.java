@@ -21,19 +21,20 @@ public class ComplexFunction implements complex_function {
 	}
 	
 	public ComplexFunction(String s, function f1, function f2) {
-		if(s==null) {
+		s = s.toLowerCase();
+		if((s==null) || (s.equals("none"))) {
 			this.op=Operation.None;
-		}else if((s.equals("mul")) || (s.equals("Mul")) || (s.equals("Times"))) {
+		}else if(s.equals("mul")) {
 			this.op=Operation.Times;
-		}else if((s.equals("div")) || (s.equals("Divid"))) {
+		}else if(s.equals("div")) {
 			this.op=Operation.Divid;
-		}else if((s.equals("max")) || (s.equals("Max"))) {
+		}else if(s.equals("max")) {
 			this.op=Operation.Max;
-		}else if((s.equals("min")) || (s.equals("Min"))) {
+		}else if(s.equals("min")) {
 			this.op=Operation.Min;
-		}else if((s.equals("comp")) || (s.equals("Comp"))) {
+		}else if(s.equals("comp")) {
 			this.op=Operation.Comp;
-		}else if((s.equals("plus")) || (s.equals("Plus"))) {
+		}else if(s.equals("plus")) {
 			this.op=Operation.Plus;
 		}else {
 			this.op=Operation.Error;
@@ -51,7 +52,6 @@ public class ComplexFunction implements complex_function {
 	public double f(double x) {
 		double left=0, right=0, result=0;
 		if(this.op==Operation.Error) {
-//			System.out.println("there is an unknown Operation, cannot calculate the result.");
 			throw new RuntimeException("there is an unknown Operation, cannot calculate the result.");
 		}
 		if(this.op==Operation.None) {
@@ -90,15 +90,15 @@ public class ComplexFunction implements complex_function {
 				return cf;
 			}
 		}else {
-			int counter=1;
+			int count=1;
 			int i;
 			for(i=s.indexOf('(')+1; i<s.length();i++) {
 				if(s.charAt(i)=='(') {
-					counter++;
+					count++;
 				}else if(s.charAt(i)==',') {
-					counter--;
+					count--;
 				}
-				if(counter==0) {
+				if(count==0) {
 					break;
 				}
 			}
@@ -124,84 +124,68 @@ public class ComplexFunction implements complex_function {
 			ComplexFunction cf = new ComplexFunction(this.getOp(), this.left().copy(), this.right().copy());
 			return cf;
 		}
-//		return cf;
 	}
 	
-//	public boolean equals(function obj) {
-//		
-//	}
-	
-	public boolean equals(Object obj) {
-		if(obj instanceof Polynom) {
-			Polynom p = (Polynom)obj;
-			for(int i=1; i<=50; i++) {
-				if(this.f(i)!=p.f(i)) {
-					return false;
-				}
-				double random = Math.random()*100;
-				if(this.f(random)!=p.f(random)) {
-					return false;
-				}
-			}	
-		}else if(obj instanceof Monom) {
-			Monom m = (Monom)obj;
-			for(int i=1; i<=50; i++) {
-				if(this.f(i)!=m.f(i)) {
-					return false;
-				}
-				double random = Math.random()*100;
-				if(this.f(random)!=m.f(random)) {
-					return false;
-				}
-			}	
-		}else if(obj instanceof ComplexFunction) {
-			ComplexFunction cf= (ComplexFunction)obj;
-			for(int i=1; i<=50; i++) {
-				if(this.f(i)!=cf.f(i)) {
-					return false;
-				}
-				double random = (Math.random()*100)+50;
-				if(this.f(random)!=cf.f(random)) {
-					return false;
-				}
-			}			
+	public boolean sampleTest(function func) {
+		for(int i=1; i<=50; i++) {
+			if(this.f(i)!=func.f(i)) {
+				return false;
+			}
+			double random = Math.random()*100;
+			if(this.f(random)!=func.f(random)) {
+				return false;
+			}
 		}
 		return true;
 	}
 	
+	public boolean equals(Object obj) {
+		if(obj instanceof Polynom) {
+			Polynom p = (Polynom)obj;
+			return sampleTest(p);	
+		}else if(obj instanceof Monom) {
+			Monom m = (Monom)obj;
+			return sampleTest(m);	
+		}else {//if(obj instanceof ComplexFunction) {
+			ComplexFunction cf= (ComplexFunction)obj;
+			return sampleTest(cf);			
+		}
+		
+	}
+	
 	public void plus(function f1) {
 		this.left = this.copy();
-		this.right=f1;
+		this.right=f1.copy();
 		this.op =Operation.Plus;
 	}
 	
 	public void mul(function f1) {
 		this.left = this.copy();
-		this.right=f1;
+		this.right=f1.copy();
 		this.op =Operation.Times;
 	}
 	
 	public void div(function f1) {
 		this.left = this.copy();
-		this.right=f1;
+		this.right=f1.copy();
 		this.op =Operation.Divid;
 	}
 	
 	public void max(function f1) {
 		this.left = this.copy();
-		this.right=f1;
+		this.right=f1.copy();
 		this.op =Operation.Max;
 	}
 	
 	public void min(function f1) {
 		this.left = this.copy();
-		this.right=f1;
+		this.right=f1.copy();
 		this.op =Operation.Min;
 	}
 	
 	public void comp(function f1) {
 		this.left = this.copy();
-		this.right=f1;
+		this.right=f1.copy();
 		this.op =Operation.Comp;
 	}
 	
@@ -210,21 +194,10 @@ public class ComplexFunction implements complex_function {
 	}
 	
 	public function right() {
-//		if(this.right==null) {
-//			System.out.println("there is no function on the right");
-//			return null;
-//		}
 		return this.right;
 	}
 	
 	public Operation getOp() {
-//		if(this.op==Operation.None){
-//			System.out.println("there is no Operation");
-//			return null;
-//		}else if(this.op==Operation.Error) {
-//			System.out.println("there is an unknown Operation");
-//			return null;
-//		}
 		return this.op;
 	}
 	

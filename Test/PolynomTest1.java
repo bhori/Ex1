@@ -102,7 +102,24 @@ class PolynomTest1 {
 	
 	@Test
 	void testRoot() {
-		
+		Polynom p1 = new Polynom("x^2-4");
+		double root = p1.root(-3.4, -1.35, 0.0001);
+		if((root>(-2+0.0001)) || (root<(-2-0.0001))){
+			fail();
+		}
+		root = p1.root(0, 2, 0.0001);
+		if((root>(2+0.0001)) || (root<(2-0.0001))){
+			fail();
+		}
+		Polynom p2 = new Polynom("-x+5");
+		root = p2.root(-779.1, 64.7, 0.0001);
+		if((root>(5+0.0001)) || (root<(5-0.0001))){
+			fail();
+		}
+		root = p2.root(1.52, 5.001, 0.0001);
+		if((root>(5+0.0001)) || (root<(5-0.0001))){
+			fail();
+		}
 	}
 	
 	@Test
@@ -122,6 +139,11 @@ class PolynomTest1 {
 	
 	@Test
 	void testF() {
+		Polynom p1=new Polynom("2.7x^5+0.236x^3-23.7");
+		assertEquals(64.588, p1.f(2));
+		assertEquals(8443.3, p1.f(5));
+		assertEquals(-23.7, p1.f(0));
+		assertEquals(-2400375, p1.f(1.5));
 		
 	}
 	

@@ -1,8 +1,12 @@
 
 package Ex1.Test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 import java.util.Iterator;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -33,58 +37,86 @@ import Ex1.functions;
 class Functions_GUITest {
 	public static void main(String[] a) {
 		functions data = FunctionsFactory();
-		int w=1000, h=600, res=300;
+		int w=1000, h=600, res=200;
 		Range rx = new Range(-10,10);
 		Range ry = new Range(-5,15);
 		data.drawFunctions(w,h,rx,ry,res);
-//		String file = "function_file.txt";
-//		String file2 = "function_file2.txt";
-//		try {
-//			data.saveToFile(file);
-//			Functions_GUI data2 = new Functions_GUI();
-//			data2.initFromFile(file);
-//			data.saveToFile(file2);
-//		}
-//		catch(Exception e) {e.printStackTrace();}
+		String file = "function_file.txt";
+		String file2 = "function_file2.txt";
+		try {
+			data.saveToFile(file);
+			Functions_GUI data2 = new Functions_GUI();
+			data2.initFromFile(file);
+			data.saveToFile(file2);
+		}
+		catch(Exception e) {e.printStackTrace();}
 		String JSON_param_file = "GUI_params.txt";
 		data.drawFunctions(JSON_param_file);
 	}
-	private functions _data=null;
-//	@BeforeAll
-//	static void setUpBeforeClass() throws Exception {
-//	}
+	private static functions _data=null;
+	private static String file;
+	@BeforeAll
+	static void setUpBeforeClass() throws Exception {
+		 file = "function_file3.txt";
+		_data = FunctionsFactory();
+		try {
+		_data.saveToFile(file);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("Eror saveToFile");
+		}
+	}
 
 	@BeforeEach
 	void setUp() throws Exception {
-		_data = FunctionsFactory();
+		
 	}
 
-	//@Test
-	void testFunctions_GUI() {
-	//	fail("Not yet implemented");
-	}
 
-	//@Test
+	@Test
 	void testInitFromFile() {
-	//	fail("Not yet implemented");
+		 file = "function_file3.txt";
+			_data = FunctionsFactory();
+			try {
+			_data.saveToFile(file);
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+				System.out.println("Eror saveToFile");
+			}
+		try {
+			Functions_GUI data2 = new Functions_GUI();
+			data2.initFromFile(file);
+			System.out.println(_data.toString());
+			System.out.println(data2.toString());
+			assertEquals(_data.toString(), data2.toString());
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			fail("Eror InitFromString");
+			}
 	}
 
-	//@Test
-	void testSaveToFile() {
-		
-		
-	}
 
-	//@Test
+	@Test
 	void testDrawFunctions() {
-		//_data.drawFunctions();
-	//	fail("Not yet implemented");
+		try {
+		String JSON_param_file = "GUI_params.txt";
+		_data.drawFunctions(JSON_param_file);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			fail("Eror testDrawFunctions");
+		}
 	}
 
 	@Test
 	void testDrawFunctionsIntIntRangeRangeInt() {
-		_data.drawFunctions("GUI_params.txt");
-		//fail("Not yet implemented");
+		int w=1000, h=600, res=200;
+		Range rx = new Range(-10,10);
+		Range ry = new Range(-5,15);
+		_data.drawFunctions(w,h,rx,ry,res);
 	}
 	public static functions FunctionsFactory() {
 		functions ans = new Functions_GUI();

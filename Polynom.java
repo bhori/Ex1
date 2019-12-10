@@ -53,6 +53,7 @@ public class Polynom implements Polynom_able{
 			}
 			return;
 			}
+		s=s.replace(" ", "");
 		int i,j=0;
 		for( i=1; i<s.length(); i++) {
 			if(s.charAt(i)=='+' || s.charAt(i)=='-') {

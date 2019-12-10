@@ -38,7 +38,7 @@
  * holder.
  */
 
-package  Ex1.javax.json;
+package  javax.json;
 
 /**
  * An immutable JSON string value.

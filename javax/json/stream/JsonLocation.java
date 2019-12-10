@@ -38,7 +38,7 @@
  * holder.
  */
 
-package  Ex1.javax.json.stream;
+package  javax.json.stream;
 
 /**
  * Provides the location information of a JSON event in an input source. The

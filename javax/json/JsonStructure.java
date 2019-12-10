@@ -38,7 +38,7 @@
  * holder.
  */
 
-package  Ex1.javax.json;
+package  javax.json;
 
 /**
  * Super type for the two structured types in JSON ({@link JsonObject object}s

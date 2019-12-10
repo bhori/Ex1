@@ -46,7 +46,7 @@ class Functions_GUITest {
 			data.saveToFile(file2);
 		}
 		catch(Exception e) {e.printStackTrace();}
-		
+	
 		String JSON_param_file = "GUI_params.txt";
 		data.drawFunctions(JSON_param_file);
 	}

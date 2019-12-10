@@ -37,7 +37,7 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package  Ex1.javax.json;
+package  javax.json;
 
 import java.util.List;
 import java.util.function.Function;

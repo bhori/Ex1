@@ -38,9 +38,9 @@
  * holder.
  */
 
-package  Ex1.javax.json.stream;
+package  javax.json.stream;
 
-import Ex1.javax.json.JsonException;
+import javax.json.JsonException;
 
 /**
  * {@code JsonParsingException} is used when an incorrect JSON is

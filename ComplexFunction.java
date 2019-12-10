@@ -113,6 +113,11 @@ public class ComplexFunction implements complex_function {
 	}
 	
 	public String toString() {
+		if(this.getOp()==Operation.None) {
+			if(this.right==null) {
+				return ""+this.left();
+			}
+		}
 		return ""+this.getOp()+"("+this.left()+","+this.right()+")";
 	}
 	

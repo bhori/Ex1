@@ -37,7 +37,7 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package  Ex1.javax.json.spi;
+package  javax.json.spi;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -48,11 +48,11 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.ServiceLoader;
 
-import Ex1.javax.json.*;
-import Ex1.javax.json.stream.JsonGenerator;
-import Ex1.javax.json.stream.JsonGeneratorFactory;
-import Ex1.javax.json.stream.JsonParser;
-import Ex1.javax.json.stream.JsonParserFactory;
+import javax.json.*;
+import javax.json.stream.JsonGenerator;
+import javax.json.stream.JsonGeneratorFactory;
+import javax.json.stream.JsonParser;
+import javax.json.stream.JsonParserFactory;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

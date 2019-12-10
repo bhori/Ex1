@@ -203,6 +203,7 @@ public class Functions_GUI implements functions  {
 			}
 			Range ry = new Range(y[0],y[1]);
 			drawFunctions(jsonObject.getInt("Width"), jsonObject.getInt("Height"), rx, ry,jsonObject.getInt("Resolution"));
+		}
 		catch (FileNotFoundException e) 
 			{
 				throw new RuntimeException("ERR:not found "+ json_file);

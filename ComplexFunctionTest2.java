@@ -41,17 +41,23 @@ public class ComplexFunctionTest2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		function p1 = new Polynom("2  ");
-		function p2 = new Polynom("x^2  ");
+		Polynom p1 = new Polynom("2  ");
+		Polynom p2 = new Polynom("x^2  ");
+		Polynom p3 = new Polynom("x^2+2");
 		ComplexFunction cf = new ComplexFunction("plus",p1,p2);
+		cf.mul(p1);
+		System.out.println(cf);
+		p1.add(new Monom("x^2"));
+		System.out.println(cf);
+		System.out.println(cf.equals(p3));
 //		ComplexFunction cf10 = new ComplexFunction(null,p2,null);
 //		System.out.println(cf10);
 //		System.out.println(cf10.equals(p2));
-		Range x= new Range(-10, 10);
-		Range y = new Range(-10, 10);
-		Functions_GUI f = new Functions_GUI();
-		f.add(cf);
-		f.drawFunctions(5, 5, x, y, 1000);
+//		Range x= new Range(-10, 10);
+//		Range y = new Range(-10, 10);
+//		Functions_GUI f = new Functions_GUI();
+//		f.add(cf);
+//		f.drawFunctions(5, 5, x, y, 1000);
 		System.out.println(cf);
 		ComplexFunction cf1 = new ComplexFunction("mul",p1,p2);
 		System.out.println(cf1);
@@ -61,7 +67,7 @@ public class ComplexFunctionTest2 {
 		System.out.println(c);
 		ComplexFunction cf3 = new ComplexFunction(Operation.Divid, c, p2);
 		System.out.println(cf3);
-		function c2 = cf3.initFromString(cf3.toString());
+		function c2 = cf3.initFromString("Divid(Times(2.0,1.0x^2),1.0x^2)");
 //		cf3.plus(p2);
 		System.out.println(cf3);
 		System.out.println(c2);
@@ -69,6 +75,12 @@ public class ComplexFunctionTest2 {
 		function c3 = new ComplexFunction("mul",c2,c2);
 		System.out.println(c3);
 		System.out.println(c3.f(-10));
+		
+//		Polynom p1 = new Polynom("2  ");
+//		Polynom p2 = new Polynom("x^2  ");
+//		ComplexFunction cf3 = new ComplexFunction(Operation.Divid, p1, p2);
+//		function c2 = cf3.initFromString("Divid(Times(2.0,1.0x^2),1.0x^2)");
+//		System.out.println(c2);
 	}
 
 }

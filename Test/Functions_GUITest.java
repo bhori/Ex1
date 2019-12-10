@@ -56,7 +56,7 @@ class Functions_GUITest {
 	private static functions _data=null;
 	private static String file;
 	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
+	static void saveToFileTest() throws Exception {
 		 file = "function_file3.txt";
 		_data = FunctionsFactory();
 		try {
@@ -66,11 +66,6 @@ class Functions_GUITest {
 			e.printStackTrace();
 			System.out.println("Eror saveToFile");
 		}
-	}
-
-	@BeforeEach
-	void setUp() throws Exception {
-		
 	}
 
 

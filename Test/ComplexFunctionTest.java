@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import Ex1.ComplexFunction;
+import Ex1.Monom;
 import Ex1.Operation;
 import Ex1.Polynom;
 import Ex1.function;
@@ -62,9 +63,11 @@ class ComplexFunctionTest {
 		Polynom p2 = new Polynom("x^2");
 		ComplexFunction cf1 = new ComplexFunction("mul",p1,p2);
 		function cf2 = cf1.initFromString(cf1.toString());
+		assertTrue(cf1.equals(cf2));
 		assertEquals(cf1.toString(), cf2.toString());
 		ComplexFunction cf3 = new ComplexFunction(Operation.None,p1,null);
 		function cf4 = cf3.initFromString(cf3.toString());
+		assertTrue(cf3.equals(cf4));
 		assertEquals(cf3.toString(), cf4.toString());
 		ComplexFunction cf5 = new ComplexFunction("das2342",p1,p2);
 		function cf6 = cf5.initFromString(cf5.toString());
@@ -93,46 +96,134 @@ class ComplexFunctionTest {
 	
 	@Test
 	void testPlus() {
-		
+		Monom m = new Monom("x^2");
+		Polynom p = new Polynom("x^2+5x");
+		ComplexFunction cf = new ComplexFunction(p);
+		ComplexFunction cf2 = new ComplexFunction(Operation.Plus,p,m);
+		cf.plus(m);
+		p.add(m);
+		for(double i=1; i<=10; i=i+0.5) {
+			assertEquals(p.f(i), cf.f(i));
+		}
+		assertTrue(cf.equals(cf2));
+		assertEquals(cf2.toString(), cf.toString());
 	}
 	
 	@Test
 	void testMul() {
-		
+		Monom m = new Monom("x^2");
+		Polynom p = new Polynom("x^2+5x");
+		ComplexFunction cf = new ComplexFunction(p);
+		ComplexFunction cf2 = new ComplexFunction(Operation.Times,p,m);
+		cf.mul(m);
+		p.multiply(m);
+		for(double i=1; i<=10; i=i+0.5) {
+			assertEquals(p.f(i), cf.f(i));
+		}
+		assertTrue(cf.equals(cf2));
+		assertEquals(cf2.toString(), cf.toString());
 	}
 	
 	@Test
 	void testDiv() {
-		
+		Monom m = new Monom("x^2");
+		Polynom p = new Polynom("x^2+5x");
+		ComplexFunction cf = new ComplexFunction(p);
+		cf.div(m);
+		double p_result;
+		double m_result;
+		double p_div_m;
+		for(double i=1; i<=10; i=i+0.5) {
+			p_result=p.f(i);
+			m_result=m.f(i);
+			p_div_m=p_result/m_result;
+			assertEquals(p_div_m, cf.f(i));
+		}
+		ComplexFunction cf2 = new ComplexFunction(Operation.Divid,p,m);
+		assertTrue(cf.equals(cf2));
+		assertEquals(cf2.toString(), cf.toString());
 	}
 	
 	@Test
 	void testMax() {
-		
+		Monom m = new Monom("x^2");
+		Polynom p = new Polynom("x^2+5x");
+		ComplexFunction cf = new ComplexFunction(p);
+		ComplexFunction cf2 = new ComplexFunction(Operation.Max,p,m);
+		cf.max(m);
+		double p_max_m;
+		for(double i=1; i<=10; i=i+0.5) {
+			p_max_m = Math.max(p.f(i), m.f(i));
+			assertEquals(p_max_m, cf.f(i));
+		}
+		assertTrue(cf.equals(cf2));
+		assertEquals(cf2.toString(), cf.toString());
 	}
 	
 	@Test
 	void testMin() {
-		
+		Monom m = new Monom("x^2");
+		Polynom p = new Polynom("x^2+5x");
+		ComplexFunction cf = new ComplexFunction(p);
+		ComplexFunction cf2 = new ComplexFunction(Operation.Min,p,m);
+		cf.min(m);
+		double p_min_m;
+		for(double i=1; i<=10; i=i+0.5) {
+			p_min_m = Math.min(p.f(i), m.f(i));
+			assertEquals(p_min_m, cf.f(i));
+		}
+		assertTrue(cf.equals(cf2));
+		assertEquals(cf2.toString(), cf.toString());
 	}
 	
 	@Test
 	void testComp() {
-		
+		Monom m = new Monom("x^2");
+		Polynom p = new Polynom("x^2+5x");
+		ComplexFunction cf = new ComplexFunction(p);
+		ComplexFunction cf2 = new ComplexFunction(Operation.Comp,p,m);
+		cf.comp(m);
+		double p_comp_m;
+		for(double i=1; i<=10; i=i+0.5) {
+			p_comp_m = p.f( m.f(i));
+			assertEquals(p_comp_m, cf.f(i));
+		}
+		assertTrue(cf.equals(cf2));
+		assertEquals(cf2.toString(), cf.toString());
 	}
+	
 	
 	@Test
 	void testLeft() {
-		
+		Monom m = new Monom("x^2");
+		Polynom p = new Polynom("x^2+5x");
+		ComplexFunction cf = new ComplexFunction(p);
+		ComplexFunction cf2 = new ComplexFunction(Operation.Comp,p,m);
+		assertTrue(p.equals(cf.left()));
+		assertTrue(p.equals(cf2.left()));
 	}
 	
 	@Test
 	void testRight() {
-		
+		Monom m = new Monom("x^2");
+		Polynom p = new Polynom("x^2+5x");
+		ComplexFunction cf2 = new ComplexFunction(Operation.Comp,p,m);
+		assertTrue(m.equals(cf2.right()));
 	}
 	
 	@Test
 	void testGetOp() {
-		
+		Monom m = new Monom("x^2");
+		Polynom p = new Polynom("x^2+5x");
+		Operation[] op = {Operation.Plus, Operation.Times, Operation.Divid, Operation.Max, Operation.Min, Operation.Comp , Operation.None, Operation.Error};
+		ComplexFunction cf;
+		for(int i=0;i<op.length;i++) {
+			if(op[i]==Operation.None) {
+				cf = new ComplexFunction(op[i],p,null);
+			}else {
+				cf = new ComplexFunction(op[i],p,m);
+			}
+			assertEquals(op[i], cf.getOp());
+		}
 	}
 }

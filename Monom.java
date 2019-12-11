@@ -161,8 +161,16 @@ public class Monom implements function{
 			Monom m=(Monom)obj;
 		    if(this.get_coefficient()==0 && m.get_coefficient()==0)
 			  return true;
-		if(Math.abs(this.get_coefficient()-m.get_coefficient())<EPSILON && this.get_power()==m.get_power())
-			return true;
+		    if(Math.abs(this.get_coefficient()-m.get_coefficient())<EPSILON && this.get_power()==m.get_power())
+			  return true;
+		}
+		if(obj instanceof Polynom) {
+			Polynom p=(Polynom)obj;
+			return(p.equals(this.copy()));
+		}
+		if(obj instanceof ComplexFunction) {
+			ComplexFunction cf=(ComplexFunction)obj;
+			return(cf.equals(this.copy()));
 		}
 		return false;
 		

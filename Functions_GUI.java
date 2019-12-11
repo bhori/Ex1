@@ -16,7 +16,8 @@ import java.util.Iterator;
 import javax.json.*;
 
 
-
+/*This class represents a collection of mathematical functions
+*  which can be presented on a GUI window and can be saved (and load) to file.*/
 public class Functions_GUI implements functions  {
 	private ArrayList<function> functions;
 	public static Color[] Colors = {Color.blue, Color.cyan, Color.MAGENTA, Color.ORANGE, Color.red, Color.GREEN, Color.PINK};
@@ -93,9 +94,12 @@ public class Functions_GUI implements functions  {
 	public Object get(int i) {
         return functions.get(i);
 	}
-
-
-	@Override
+	/**
+	 * Init a new collection of functions from a file
+	 * @param file - the file name
+	 * @throws IOException if the file does not exists of unreadable (wrong format)
+	 */
+    @Override
 	public void initFromFile(String file) throws IOException {
 		try 
 	        {
@@ -114,7 +118,12 @@ public class Functions_GUI implements functions  {
 	        }
 		
 	}
-
+    /**
+     * The method received name and write all functions in the collection  in file with the same name.
+     * if the file not exist the method create the file. 
+     * @param file - the file name
+     * @throws IOException if the file is not writable
+     */
 	@Override
 	public void saveToFile(String file) throws IOException {
 
@@ -130,7 +139,15 @@ public class Functions_GUI implements functions  {
 		}
 		
 	}
-
+	/**
+	 * Draws all the functions in the collection in a GUI window using the
+	 * given parameters for the GUI window and the range & resolution
+	 * @param width - the width of the window - in pixels
+	 * @param height - the height of the window - in pixels
+	 * @param rx - the range of the horizontal axis
+	 * @param ry - the range of the vertical axis
+	 * @param resolution - the number of samples with in rx: the X_step = rx/resulution
+	 */
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
 		if(width<=0 || height<=0 || rx==null || ry==null || resolution<=0 )
@@ -156,7 +173,7 @@ public class Functions_GUI implements functions  {
 			StdDraw.setPenRadius(0.001);
 			StdDraw.line(i, ry.get_min(), i, ry.get_max());
 			StdDraw.setPenRadius(0.004);
-			StdDraw.text(i, -1, ""+i);
+			StdDraw.text(i, -0.5, ""+i);
 		}
 		for(int i=(int)ry.get_min();i<=ry.get_max();i++) {
 			StdDraw.setPenRadius(0.001);
@@ -178,7 +195,11 @@ public class Functions_GUI implements functions  {
 		}
 		
 	}
-
+	/**
+	 * Draws all the functions in the collection in a GUI window using the given JSON file
+	 * @param json_file - the file with all the parameters for the GUI window. 
+	 * Note: if the file id not readable or in wrong format use default values. 
+	 */
 	@Override
 	public void drawFunctions(String json_file) {
 		InputStream fis;
@@ -204,14 +225,12 @@ public class Functions_GUI implements functions  {
 			Range ry = new Range(y[0],y[1]);
 			drawFunctions(jsonObject.getInt("Width"), jsonObject.getInt("Height"), rx, ry,jsonObject.getInt("Resolution"));
 		}
-		catch (FileNotFoundException e) 
-			{
-				throw new RuntimeException("ERR:not found "+ json_file);
-			}
 		catch (Exception e) 
 		{
-			e.printStackTrace();
-			throw new RuntimeException("ERR:The file:"+ json_file+ " not match");
+			int w=1000, h=600, res=203;
+			Range rx = new Range(-10,10);
+			Range ry = new Range(-5,15);
+			drawFunctions(w,h,rx,ry,res);
 		}		
 		
 	}

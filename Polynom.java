@@ -116,6 +116,8 @@ public class Polynom implements Polynom_able{
 		if(this.polynom.size()==0) {
 			polynom.add(m1);
 			return;
+		}else if(m1.equals(Monom.ZERO)) {
+			return;
 		}
 		for(int i=0; i<polynom.size(); i++) {
 			if(polynom.get(i).get_power()==m1.get_power()) {

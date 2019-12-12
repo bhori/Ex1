@@ -18,7 +18,7 @@ public class ComplexFunctionTest111 {
 		ComplexFunction cf7 = new ComplexFunction(Operation.Error, p1, p2);
 		ComplexFunction cf8 = new ComplexFunction("none",p1, null);
 		System.out.println(cf8);
-		function cf9 = cf8.initFromString("plu,(x+2+x-5,56(123,443)");
+		function cf9 = cf8.initFromString("mul ( N o n e (x+3,n u l l )  ,  7   8 )");
 //		cf5.mul(null);
 		System.out.println(cf9);
 //		System.out.println(cf2);

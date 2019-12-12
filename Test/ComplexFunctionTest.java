@@ -15,27 +15,6 @@ import Ex1.Polynom;
 import Ex1.function;
 
 class ComplexFunctionTest {
-
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
-
-	@BeforeEach
-	void setUp() throws Exception {
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-	}
-
-//	@Test
-//	void test() {
-//		fail("Not yet implemented");
-//	}
 	
 	@Test
 	void testF() {
@@ -76,12 +55,25 @@ class ComplexFunctionTest {
 	
 	@Test
 	void testToString() {
-		
+		Polynom p1 = new Polynom("0.123x^8+x^2-3");
+		Polynom p2 = new Polynom("65x^3-2");
+		ComplexFunction cf1 = new ComplexFunction("mul",p1,p2);
+		function cf2 = cf1.initFromString(cf1.toString());
+		assertEquals(cf1.toString(), cf2.toString());
 	}
 
 	@Test
 	void testEquals() {
-		
+		Polynom p1 = new Polynom("x+x^2");
+		Polynom p2 = new Polynom("x^2");
+		ComplexFunction cf1 = new ComplexFunction("mul",p1,p2);
+		ComplexFunction cf3 = new ComplexFunction("None",p1,null);
+		cf3.mul(p2);
+		assertTrue(cf1.equals(cf3));
+		function cf2 = cf1.initFromString(cf1.toString());
+		assertTrue(cf1.equals(cf2));
+		p1.multiply(p2);
+		assertTrue(cf1.equals(p1));
 	}
 	
 	@Test

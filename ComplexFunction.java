@@ -125,6 +125,10 @@ public class ComplexFunction implements complex_function {
 	 * @return a new ComplexFunction represented by the string s
 	 */
 	public function initFromString(String s) {
+		if(s==null) {
+			return null;
+		}
+		s=s.replace(" ", "");
 		if (s.indexOf('(') == -1) {
 			if (s.equals("null")) {
 				return null;
@@ -153,6 +157,9 @@ public class ComplexFunction implements complex_function {
 				throw new RuntimeException("ERR:The String "+ s +" is incorrect complex function.");
 			}
 			try {
+				if(s.charAt(s.length()-1)!=')') {
+					throw new RuntimeException("ERR: this String is incorrect complex function.");
+				}
 				String left = s.substring(s.indexOf('(') + 1, i);
 				String right = s.substring(i + 1, s.length() - 1);
 				function leftFunc = initFromString(left);

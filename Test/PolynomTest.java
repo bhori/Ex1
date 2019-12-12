@@ -2,9 +2,13 @@ package Ex1.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.awt.color.CMMException;
+
 import org.junit.jupiter.api.Test;
 
+import Ex1.ComplexFunction;
 import Ex1.Monom;
+import Ex1.Operation;
 import Ex1.Polynom;
 import Ex1.Polynom_able;
 import Ex1.function;
@@ -17,6 +21,8 @@ class PolynomTest {
 		assertFalse(p1.isZero());
 		Polynom p2 = new Polynom("0");
 		assertTrue(p2.isZero());
+		p1.multiply(p2);
+		assertTrue(p1.isZero());
 	}
 
 	@Test
@@ -105,8 +111,6 @@ class PolynomTest {
 		assertEquals(0, p1.area(-4, -4, 0.0001));
 		area = p1.area(0, 5, 0.0001);
 		assertTrue((area < (27 + 0.01)) && (area > (27 - 0.01)));
-		Polynom p2 = new Polynom("-x+5");
-
 	}
 
 	@Test
@@ -147,11 +151,6 @@ class PolynomTest {
 		assertEquals(8443.3, p1.f(5));
 		assertEquals(-23.7, p1.f(0));
 		assertTrue((p1.f(1.5) > -2.400375 - 0.0001) && (p1.f(1.5) < -2.400375 + 0.0001));
-
-	}
-
-	@Test
-	void testItertor() {
 
 	}
 

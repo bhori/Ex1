@@ -97,7 +97,7 @@ public class Functions_GUI implements functions  {
 	/**
 	 * Init a new collection of functions from a file
 	 * @param file - the file name
-	 * @throws IOException if the file does not exists of unreadable (wrong format)
+	 * @throws IOException if the file does not exists or unreadable (wrong format)
 	 */
     @Override
 	public void initFromFile(String file) throws IOException {
@@ -114,7 +114,7 @@ public class Functions_GUI implements functions  {
 	        } 
 	        catch (IOException e) 
 	        {
-	        	throw new RuntimeException("ERR:could not read "+ file);
+	        	throw new IOException("ERR:not found/could not read file: "+ file);
 	        }
 		
 	}
@@ -133,9 +133,9 @@ public class Functions_GUI implements functions  {
 			pw.write(this.toString());
 			pw.close();
 		} 
-		catch (FileNotFoundException e) 
+		catch (IOException e) 
 		{
-			throw new RuntimeException("ERR:not found "+ file);
+			throw new IOException("ERR:can't write in file: "+ file);
 		}
 		
 	}

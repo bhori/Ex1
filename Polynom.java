@@ -7,16 +7,7 @@ import java.util.function.Predicate;
 import javax.management.RuntimeErrorException;
 
 import Ex1.Monom;
-//StringBuilder sb = new StringBuilder();
-//
-//sb.append("first name");
-//sb.append(",");
-//sb.append("last name");
-//sb.append("\n");
-//sb.append("Israel");
-//sb.append(",");
-//sb.append("Israeli");
-//sb.append("\n");
+
 /**
  * This class represents a Polynom with add, multiply functionality, it also should support the following:
  * 1. Riemann's Integral: https://en.wikipedia.org/wiki/Riemann_integral

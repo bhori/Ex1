@@ -197,7 +197,12 @@ public class ComplexFunction implements complex_function {
 			return cf;
 		}
 	}
-
+	
+	/**
+	 * Test if this ComplexFunction equals to func for several values
+	 * @param func
+	 * @return true iff this ComplexFunction represents the same function as func for certain values 
+	 */
 	private boolean sampleTest(function func) {
 		boolean eror1, eror2;
 		double random;
@@ -228,13 +233,11 @@ public class ComplexFunction implements complex_function {
 				return false;
 			if(eror1==false)
 			{
-				if (this.f(i) !=func.f(i)) 
+				if (this.f(random) > func.f(random)+Monom.EPSILON || this.f(random) < func.f(random)-Monom.EPSILON ) 
 					return false;
-				if (this.f(random) > func.f(random)+Monom.EPSILON && this.f(random) < func.f(random)-Monom.EPSILON ) 
-					return false;
-				
-			}
-			
+				if (this.f(random) > func.f(random)+Monom.EPSILON || this.f(random) < func.f(random)-Monom.EPSILON ) 
+					return false;				
+			}			
 		}
 		return true;
 	}

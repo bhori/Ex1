@@ -22,6 +22,9 @@ class ComplexFunctionTest {
 		Polynom p2 = new Polynom("x^2");
 		ComplexFunction cf1 = new ComplexFunction("plus", p1, p2);
 		assertEquals(10, cf1.f(2));
+		p1.add(p2);
+		assertEquals(p1.f(2), cf1.f(2));
+		p1.substract(p2);
 		ComplexFunction cf2 = new ComplexFunction("mul", p1, p2);
 		assertEquals(24, cf2.f(2));
 		ComplexFunction cf3 = new ComplexFunction("div", p1, p2);
@@ -78,6 +81,9 @@ class ComplexFunctionTest {
 		ComplexFunction cf4 = new ComplexFunction("div",p1,p3);
 		cf1.div(p3);
 		assertTrue(cf1.equals(cf4));
+		Monom m = new Monom("x^2");
+		ComplexFunction cf5 = new ComplexFunction("None",p2,null);
+		assertTrue(cf5.equals(m));
 	}
 	
 	@Test

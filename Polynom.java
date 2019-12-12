@@ -7,16 +7,7 @@ import java.util.function.Predicate;
 import javax.management.RuntimeErrorException;
 
 import Ex1.Monom;
-//StringBuilder sb = new StringBuilder();
-//
-//sb.append("first name");
-//sb.append(",");
-//sb.append("last name");
-//sb.append("\n");
-//sb.append("Israel");
-//sb.append(",");
-//sb.append("Israeli");
-//sb.append("\n");
+
 /**
  * This class represents a Polynom with add, multiply functionality, it also should support the following:
  * 1. Riemann's Integral: https://en.wikipedia.org/wiki/Riemann_integral
@@ -154,6 +145,7 @@ public class Polynom implements Polynom_able{
 		Monom m=new Monom("-1");
 		p1.multiply(m);
 		this.add(p1);
+		p1.multiply(m);
 		
 	}
 
@@ -229,7 +221,6 @@ public class Polynom implements Polynom_able{
 	 * @return an approximated value (root) for this (cont.) function 
 	 */
 	public double root(double x0, double x1, double eps) {
-		// TODO Auto-generated method stub
 		if(x0>x1) {
 			throw new RuntimeException("ERR: the range is wrong, x0>x1!");
 		}
@@ -289,7 +280,6 @@ public class Polynom implements Polynom_able{
 	 * @return the approximated area above X-axis below this function bounded in the range of [x0,x1]
 	 */
 	public double area(double x0, double x1, double eps) {
-		// TODO Auto-generated method stub
 		double area = 0;
 		double tmp=0;
 		if((x0>=x1) || (Math.abs(x1-x0)<eps)){
@@ -349,7 +339,11 @@ public class Polynom implements Polynom_able{
 		return s;
 		
 	}
-	@Override
+	/**
+	 * init and returns a new Polynom from a String such as:
+	 *  {"x", "3+1.4X^3-34x"};
+	 * @param s: is a string represents a Polynom
+	 */
 	public function initFromString(String s) {
 		return new Polynom(s);
 	}

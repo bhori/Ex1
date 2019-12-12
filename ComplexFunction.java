@@ -199,14 +199,42 @@ public class ComplexFunction implements complex_function {
 	}
 
 	private boolean sampleTest(function func) {
+		boolean eror1, eror2;
+		double random;
 		for (int i = 1; i <= 50; i++) {
-			if (this.f(i) != func.f(i)) {
-				return false;
+			eror1= false;
+			eror2= false;
+		    random = (Math.random() * 100)+50;
+			try {
+				this.f(i);
+				this.f(random);
 			}
-			double random = Math.random() * 100;
-			if (this.f(random) != func.f(random)) {
-				return false;
+			catch(Exception e) 
+			{ 
+				eror1=true;
 			}
+			try {
+				func.f(i);
+				func.f(random);
+			}
+			catch(Exception e) 
+			{ 
+				//one function undefined and one defined  in specific point
+				if(eror1==false)
+					return false;
+				eror2=true;
+			}//one function undefined and one defined  in specific point
+			if(eror1==true && eror2==false)
+				return false;
+			if(eror1==false)
+			{
+				if (this.f(i) !=func.f(i)) 
+					return false;
+				if (this.f(random) > func.f(random)+Monom.EPSILON && this.f(random) < func.f(random)-Monom.EPSILON ) 
+					return false;
+				
+			}
+			
 		}
 		return true;
 	}

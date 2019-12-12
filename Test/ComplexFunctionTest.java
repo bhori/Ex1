@@ -66,6 +66,7 @@ class ComplexFunctionTest {
 	void testEquals() {
 		Polynom p1 = new Polynom("x+x^2");
 		Polynom p2 = new Polynom("x^2");
+		Polynom p3 = new Polynom("x-1");
 		ComplexFunction cf1 = new ComplexFunction("mul",p1,p2);
 		ComplexFunction cf3 = new ComplexFunction("None",p1,null);
 		cf3.mul(p2);
@@ -74,6 +75,9 @@ class ComplexFunctionTest {
 		assertTrue(cf1.equals(cf2));
 		p1.multiply(p2);
 		assertTrue(cf1.equals(p1));
+		ComplexFunction cf4 = new ComplexFunction("div",p1,p3);
+		cf1.div(p3);
+		assertTrue(cf1.equals(cf4));
 	}
 	
 	@Test
